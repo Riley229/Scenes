@@ -161,6 +161,10 @@ open class Director : IdentifiableObject, PainterProtocol, CustomStringConvertib
         dispatcher.raiseMouseMoveEvent(globalLocation:location)
     }
 
+    public func onMouseScroll(deltaY:Int) {
+        dispatcher.raiseMouseScrollEvent(deltaY:deltaY)
+    }
+
     public func onKeyDown(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
         dispatcher.raiseKeyDownEvent(key:key, code:code, ctrlKey:ctrlKey, shiftKey:shiftKey, altKey:altKey, metaKey:metaKey)
     }

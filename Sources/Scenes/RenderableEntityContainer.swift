@@ -93,8 +93,6 @@ open class RenderableEntityContainer : ContainableRenderableEntity {
         }
     }
 
-
-
     // ********************************************************************************
     // API FOLLOWS
     // These functions should be over-ridden by descendant classes
@@ -109,7 +107,4 @@ open class RenderableEntityContainer : ContainableRenderableEntity {
     /// method.
     open func recalculateSize() {
     }
-
-    
-
 }

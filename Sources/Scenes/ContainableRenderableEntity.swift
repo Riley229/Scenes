@@ -60,16 +60,20 @@ open class ContainableRenderableEntity : RenderableEntity {
     /// The topLeft point of the entity
     /// When set, this entity must reposition accordingly.
     public var topLeft : Point {
-        didSet {
-            topLeftChanged()
+        didSet (oldTopLeft) {
+            if oldTopLeft != topLeft {
+                topLeftChanged()
+            }
         }
     }
 
     /// The externally specified size of the entity, overriding 
     /// the *currentCalculatedSize*.
     public var externalSize : Size? {
-        didSet {
-            sizeChanged()
+        didSet (oldExternalSize) {
+            if oldExternalSize != externalSize {
+                sizeChanged()
+            }
         }
     }
 
@@ -137,7 +141,4 @@ open class ContainableRenderableEntity : RenderableEntity {
 
         super.init(name:name)
     }
- 
-
-
 }

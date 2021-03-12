@@ -36,6 +36,7 @@ public class Dispatcher {
     private var registeredMouseDownHandlers = EventHandlers<MouseDownHandler>()
     private var registeredMouseUpHandlers   = EventHandlers<MouseUpHandler>()
     private var registeredMouseMoveHandlers = EventHandlers<MouseMoveHandler>()
+    private var registeredMouseScrollHandlers = EventHandlers<MouseScrollHandler>()
 
     // Entity Mouse Handlers
     private var registeredEntityMouseDownHandlers  = EventHandlers<EntityMouseDownHandler>()
@@ -69,6 +70,7 @@ public class Dispatcher {
         debugListRegisteredHandlers(handlers:registeredMouseDownHandlers, name:"mouseDown")
         debugListRegisteredHandlers(handlers:registeredMouseUpHandlers, name:"mouseUp")
         debugListRegisteredHandlers(handlers:registeredMouseMoveHandlers, name:"mouseMove")
+        debugListRegisteredHandlers(handlers:registeredMouseScrollHandlers, name:"mouseScroll")
         
         debugListRegisteredHandlers(handlers:registeredEntityMouseDownHandlers, name:"entityMouseDown")
         debugListRegisteredHandlers(handlers:registeredEntityMouseUpHandlers, name:"entityMouseUp")
@@ -190,6 +192,19 @@ public class Dispatcher {
             }
         }
         previousMouseLocation = globalLocation
+    }
+
+    // ========== MouseScrollHandler ==========
+    public func registerMouseScrollHandler(handler:MouseScrollHandler) {
+        registeredMouseScrollHandlers.register(handler)
+    }
+
+    public func unregisterMouseScrollHandler(handler:MouseScrollHandler) {
+        registeredMouseScrollHandlers.unregister(handler)
+    }
+
+    internal func raiseMouseScrollEvent(deltaY:Int) {
+        registeredMouseScrollHandlers.forEach {$0.onMouseScroll(deltaY:deltaY)}
     }
 
     // ========== CanvasResizeHandler ==========
